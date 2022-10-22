@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1 class="mt-3">Search Results</h1>
+<h4>You entered {{query}}</h4>
+{% if video_list|length != 0%}
+<table class="table table-hover">
+    <thead>
+      <tr scope="row">
+        <th>Title</th>
+        <th>Thumbnail</th>
+        <th>Duration</th>
+        <th>Views</th>
+        <th>Uploader</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for dictionary_item in video_list %}
+     <tr>
+         <td> {{ dictionary_item['title'] }} </td>
+         <td><img src="{{dictionary_item['thumbnail']}}" alt="thumbnail" width="130"></td>
+         <td> {{ dictionary_item['duration'] }} </td>
+         <td class=""> {{ dictionary_item['views'] }} </td>
+         <td class="text-center h-auto"> {{ dictionary_item['uploader'] }} <div><img src="{{dictionary_item['uploader_icon']}}" width="30" height="30" alt="uploader-icon"></div></td>
+         <td>
+            <a href="{{dictionary_item['video_url']}}" target="_blank"><button class="btn btn-sm btn-info" >Watch</button></a>
+        </td>
+     </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+<h1 class="text-center">No videos searched!</h1>
+{% endif %}
+
+{% endblock %}

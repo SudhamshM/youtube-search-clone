@@ -1,0 +1,43 @@
+{%extends 'layout.html'%}
+{%block body%}
+    {% if video_list|length != 0%}
+    <div class="row mt-3">
+        {% for dictionary_item in video_list %}
+        <div class="card col-4 mb-2" style="width: 33%;">
+            <div class="position-relative img-thumbnail border-0">
+                <a href="{{dictionary_item['video_url']}}"><img class="card-img-top rounded"
+                        src="{{dictionary_item['thumbnail']}}" alt="Card image cap">
+                    <div class="text-bg-dark ps-1 pe-1 small fw-semibold rounded-1 pointer-event"
+                        style="position: absolute; bottom: 8px; right: 16px; border: 4px;">
+                        {{dictionary_item['duration']}}
+                    </div>
+                </a>
+
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{dictionary_item['title']}}</h5>
+                <p class="card-text">
+                    We started getting visitors… from every universe. Watch the official trailer for
+                    #SpiderManNoWayHome, exclusively in movie...</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Views: </strong>{{dictionary_item['views']}}</li>
+                <li class="list-group-item"><strong>Uploaded: </strong>{{dictionary_item['uploaded']}}</li>
+                <li class="list-group-item bg-light">
+                    <strong>Uploader:</strong>
+                    <div id="channel-name" style="width: 85%;">{{dictionary_item['uploader']}}</div>
+                    <div id="channel-thumbnail">
+                        <img src="{{dictionary_item['uploader_icon']}}" class="rounded-circle position-absolute" style="bottom: 23%; right: 15px"
+                            width="36" height="36" alt="uploader-icon">
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+        {%endfor%}
+    </div>
+    {%else%}
+    <div class="h3">Nothing to search.</div>
+    {%endif%}
+{%endblock%}
