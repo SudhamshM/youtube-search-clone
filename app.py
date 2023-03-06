@@ -54,8 +54,9 @@ def search():
         return redirect('/')
     complete_video_list = yt_search_parse(search_term)
     print(complete_video_list)
-
+    ## table list view
     #return render_template("results.html", query=search_term, video_list=complete_video_list)
+    ## card list view
     return render_template('html-videos.html', video_list=complete_video_list)
 
 @my_app.get('/watchlist')
