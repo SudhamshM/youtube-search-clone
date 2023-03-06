@@ -17,6 +17,7 @@ def get_video_info(self) -> dict:
         video_info['video_url'] = base_url + self['videoRenderer']['navigationEndpoint']['commandMetadata']['webCommandMetadata']['url']
         video_info['uploader_icon'] = self['videoRenderer']['channelThumbnailSupportedRenderers']['channelThumbnailWithLinkRenderer']['thumbnail']['thumbnails'][0]['url']
         description_list:list[dict] = self['videoRenderer']['detailedMetadataSnippets'][0]['snippetText']['runs']
+        
         description = ''
         for item in description_list:
             description += item.get('text')
