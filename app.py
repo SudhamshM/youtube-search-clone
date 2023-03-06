@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect
 import requests, json, re
 from bs4 import BeautifulSoup
 
-my_app = Flask(__name__)
+app = Flask(__name__)
 
 def get_video_info(self) -> dict:
         base_url = 'https://www.youtube.com'
@@ -42,12 +42,12 @@ def yt_search_parse(query_to_search:str) -> list:
             continue
     return dictionary_video_list
 
-@my_app.get('/')
+@app.get('/')
 def index():
     print(request.endpoint)
     return render_template('index.html')
 
-@my_app.get('/search')
+@app.get('/search')
 def search():
     search_term = request.args.get('query')
     if not search_term:
@@ -59,6 +59,6 @@ def search():
     ## card list view
     return render_template('html-videos.html', video_list=complete_video_list)
 
-@my_app.get('/watchlist')
+@app.get('/watchlist')
 def get_watchlist():
     return render_template("index.html")
